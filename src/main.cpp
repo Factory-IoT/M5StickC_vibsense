@@ -31,7 +31,7 @@ long samplingTime[SAMPLE_SIZE];                     //サンプリング周期�
 int mesureNum = 0;                                  //測定済み回数
 boolean serialMonitor = 0;                          //シリアルモニターへ出力する場合は1
 boolean m5LcdMonitor  = 1;                          //M5StickCディスプレイへ出力する場合は1
-boolean graphMonitor  = 1;                          //加速度グラフ描画
+boolean graphMonitor  = 0;                          //加速度グラフ描画
 
 //レジスタ書き込み用関数　ヘッダファイル変更できる方は mpu6886.hの同じ関数をpublic化して使っても可。
 void I2C_Write_NBytes(uint8_t driver_Addr, uint8_t start_Addr, uint8_t number_Bytes, uint8_t *write_Buffer){
@@ -75,7 +75,6 @@ void getAccel(){
 }
 
 void BTsend(){
-    bts.println(255);
     bts.println(SAMPLE_SIZE);
     bts.println(mesureNum);
     M5.Lcd.println("Data sending");
